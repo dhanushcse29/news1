@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <title>Admin - College News & Events</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <script>
+        // Check authentication immediately
+        function checkAuth() {
+            const token = localStorage.getItem('adminToken');
+            if (!token) {
+                window.location.href = '/admin-login.html';
+                return;
+            }
+        }
+        checkAuth();
+    </script>
+
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <h1>College News & Events</h1>
+            </div>
+            <div class="nav-links">
+                <a href="/">Home</a>
+                <a href="/news.html">News</a>
+                <a href="/events.html">Events</a>
+                <a href="/contact.html">Contact</a>
+                <a href="/admin.html" class="admin-btn active">Admin</a>
+                <button class="logout-btn" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</button>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <main class="admin-page">
+        <h1>Admin Dashboard</h1>
+        <div class="admin-header">
+            <div class="welcome-message">
+                Welcome, Admin
+            </div>
+            <div class="last-login">
+                Last Login: <span id="lastLoginTime"></span>
+            </div>
+        </div>
+        <div class="admin-container">
+            <section class="admin-section">
+                <h2>Add News</h2>
+                <form id="addNewsForm" class="admin-form">
+                    <div class="form-group">
+                        <input type="text" name="title" required placeholder="News Title">
+                    </div>
+                    <div class="form-group">
+                        <textarea name="content" required placeholder="News Content"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="image" required placeholder="Image URL">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="author" required placeholder="Author Name">
+                    </div>
+                    <button type="submit">Add News</button>
+                </form>
+            </section>
+
+            <section class="admin-section">
+                <h2>Add Event</h2>
+                <form id="addEventForm" class="admin-form">
+                    <div class="form-group">
+                        <input type="text" name="title" required placeholder="Event Title">
+                    </div>
+                    <div class="form-group">
+                        <textarea name="description" required placeholder="Event Description"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <input type="date" name="date" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="time" name="time" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="location" required placeholder="Event Location">
+                    </div>
+                    <button type="submit">Add Event</button>
+                </form>
+            </section>
+
+            <section class="admin-section">
+                <h2>Manage News</h2>
+                <div class="manage-list" id="newsList">
+                    <!-- News items will be loaded here -->
+                </div>
+            </section>
+
+            <section class="admin-section">
+                <h2>Manage Events</h2>
+                <div class="manage-list" id="eventsList">
+                    <!-- Events will be loaded here -->
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <!-- Same footer as index.html -->
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/news.html">News</a></li>
+                    <li><a href="/events.html">Events</a></li>
+                    <li><a href="/contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Connect With Us</h3>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Newsletter</h3>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Enter your email">
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 College News & Events. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="/js/main.js"></script>
+    <script>
+        // Prevent back button after logout
+        window.history.pushState(null, null, window.location.href);
+        window.onpopstate = function () {
+            window.history.go(1);
+        };
+
+        function logout() {
+            if (confirm('Are you sure you want to logout?')) {
+                localStorage.clear();
+                sessionStorage.clear();
+                window.location.href = '/admin-login.html';
+            }
+        }
+    </script>
+</body>
+</html> 

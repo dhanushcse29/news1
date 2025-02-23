@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JNTUA CEA College News & Events</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <img src="/images/FINAL_IMG.png"   alt="Logo">
+                <div class="logo-text">
+                    <h1>JNTUA CEA</h1>
+                    <p>News and Events</p>
+                </div>
+            </div>
+            <ul class="nav-links">
+                <li><a href="/" class="active">Home</a></li>
+                <li><a href="#news">News</a></li>
+                <li><a href="#events">Events</a></li>
+                <li><a href="/contact.html">Contact</a></li>
+                <li><a href="/admin.html" class="admin-btn">Admin Login</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Slider -->
+        <section class="hero-slider">
+            <div class="swiper mainSwiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="slide-inner" style="background-image: url('/images/slide1.jpg')">
+                            <div class="slide-content">
+                                <h2> Welcome to JNTUA CEA</h2>
+                                <p>Stay updated with the latest news and events</p>
+                                <a href="#news" class="cta-btn">Latest Updates</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="slide-inner" style="background-image: url('/images/slide2.jpg')">
+                            <div class="slide-content">
+                                <h2>Campus Events</h2>
+                                <p>Don't miss out on exciting activities</p>
+                                <a href="#events" class="cta-btn">View Events</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+            </div>
+        </section>
+
+        <!-- News Section -->
+        <section id="news" class="news-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Latest News</h2>
+                    <a href="/news.html" class="view-all">View All <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="news-grid" id="newsGrid">
+                    <!-- News items will be loaded here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Events Section -->
+        <section id="events" class="events-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Upcoming Events</h2>
+                    <p>Don't miss out on these exciting upcoming events at our college</p>
+                    <a href="/events.html" class="view-all">View All Events <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="events-grid" id="eventsGrid">
+                    <!-- Loading skeleton -->
+                    <div class="event-card loading-skeleton">
+                        <div class="event-date">
+                            <div class="day"></div>
+                            <div class="month"></div>
+                        </div>
+                        <div class="event-content">
+                            <div style="height: 24px; width: 80%; margin-bottom: 1rem;"></div>
+                            <div style="height: 60px; width: 100%;"></div>
+                            <div class="event-details">
+                                <div style="height: 20px; width: 40%;"></div>
+                                <div style="height: 20px; width: 40%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <img  class="footer-logo" src="/images/FINAL_IMG.png" alt="JNTUA Logo">
+                    <h3>JNTUA College of Engineering (Autonomous) Ananthapuramu</h3>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/news.html">News</a></li>
+                        <li><a href="/events.html">Events</a></li>
+                        <li><a href="/contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Connect With Us</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-map-marker-alt"></i> Sir Mokshagundam Vishveshwariah Road, Ananthapuramu, Andhra Pradesh-515002, INDIA</li>
+                        <li><i class="fas fa-phone"></i> 08554-273013</li>
+                        <li><i class="fas fa-envelope"></i> jntuacea@gmail.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Developed and Maintained by Sireesha_Cse</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+    <script src="/js/main.js"></script>
+</body>
+</html> 

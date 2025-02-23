@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>Admin Login - College News & Events</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <h1>College News & Events</h1>
+            </div>
+            <div class="nav-links">
+                <a href="/">Home</a>
+                <a href="/news.html">News</a>
+                <a href="/events.html">Events</a>
+                <a href="/contact.html">Contact</a>
+                <a href="/admin-login.html" class="admin-btn active">Admin</a>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <main class="admin-login-page">
+        <div class="login-container">
+            <h1>Admin Login</h1>
+            <form id="loginForm" class="login-form">
+                <div class="form-group">
+                    <input type="text" name="username" required placeholder="Username">
+                </div>
+                <div class="form-group">
+                    <input type="password" name="password" required placeholder="Password">
+                </div>
+                <button type="submit">Login</button>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <!-- Same footer as before -->
+    </footer>
+
+    <script>
+        // Check if already logged in
+        const token = localStorage.getItem('adminToken');
+        if (token) {
+            window.location.href = '/admin.html';
+        }
+
+        // Check if this is a logout redirect
+        const urlParams = new URLSearchParams(window.location.search);
+        const isLogout = urlParams.get('logout');
+        
+        // Clear all authentication data on page load
+        (function clearAuth() {
+            if (isLogout) {
+                localStorage.clear();
+                sessionStorage.clear();
+                
+                // Remove any existing cookies
+                document.cookie.split(";").forEach(function(c) { 
+                    document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/"); 
+                });
+                
+                // Clean up the URL
+                window.history.replaceState({}, document.title, '/admin-login.html');
+            }
+        })();
+
+        // Prevent back button after logout
+        window.history.pushState(null, null, window.location.href);
+        window.onpopstate = function () {
+            window.history.go(1);
+        };
+
+        // Add loading state
+        let isLoading = false;
+
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            if (isLoading) return;
+
+            const username = e.target.username.value;
+            const password = e.target.password.value;
+            const submitBtn = e.target.querySelector('button');
+            
+            // Show loading state
+            isLoading = true;
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Logging in...';
+
+            try {
+                const response = await fetch('/api/admin/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ username, password })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    localStorage.setItem('adminToken', data.token);
+                    localStorage.setItem('adminUsername', data.username);
+                    window.location.href = '/admin.html';
+                } else {
+                    alert(data.message || 'Login failed');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Login failed. Please try again.');
+            } finally {
+                // Reset loading state
+                isLoading = false;
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Login';
+            }
+        });
+    </script>
+</body>
+</html> 
