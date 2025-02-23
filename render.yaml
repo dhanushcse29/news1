@@ -1,8 +1,4 @@
 {
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://render.com/schema/render.yaml.json",
-  "title": "render.yaml JSON Schema",
-  "description": "A JSON schema for render.yaml files. See https://docs.render.com/blueprint-spec for more information",
   "type": "object",
   "definitions": {
     "buildFilter": {
